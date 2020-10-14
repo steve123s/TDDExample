@@ -2,12 +2,8 @@ name: Swift Linter
 
 on:
   push:
-    paths: 
-      - '**/*.swift'
     branches: [ master ]
   pull_request:
-    paths: 
-      - '**/*.swift'
     branches: [ master ]
 
 jobs:
