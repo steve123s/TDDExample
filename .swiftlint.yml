@@ -1,5 +1,5 @@
 disabled_rules: # rule identifiers to exclude from running
- #- trailing_whitespace
+ - trailing_whitespace
  #- force_try
  #- function_parameter_count
  #- force_cast
