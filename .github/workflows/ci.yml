@@ -15,13 +15,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Install SwiftLint
+    - name: Install Homebrew
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       
     - name: Install SwiftLint
       run: brew install swiftlint
       
-    - name: Install SwiftLint
+    - name: Run Swiftlint
       run: swiftlint
 
   build-and-test:
