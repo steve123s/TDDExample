@@ -16,6 +16,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Lint Action
       uses: wearerequired/lint-action@v1.6.0
+      with:
+        swift-format: true
+        swiftlint: true
  
   build-and-test:
     name: Build & Test
