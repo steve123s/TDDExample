@@ -17,7 +17,7 @@ jobs:
     - name: Lint Action
       uses: wearerequired/lint-action@v1.6.0
       with:
-        swift-format: true
+        swiftformat: true
         swiftlint: true
  
   build-and-test:
