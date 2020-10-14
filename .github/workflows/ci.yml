@@ -7,7 +7,20 @@ on:
     branches: [ master ]
 
 jobs:
+  
+  build:
+    name: Swift Lint
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: GitHub Action for SwiftLint with --strict
+      uses: norio-nomura/action-swiftlint@3.1.0
+      with:
+        args: --strict
+ 
   build-and-test:
+    name: Build & Test
     runs-on: macos-latest
 
     steps:
