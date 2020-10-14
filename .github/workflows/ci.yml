@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  
+  swiftlint:
+    name: Swift Lint
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: set -o pipefail 
+      
+    - name: Install Homebrew
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      
+    - name: Install SwiftLint
+      run: brew install swiftlint
+      
+    - name: Run Swiftlint
+      run: swiftlint
+
+  build-and-test:
+    name: Build & Test
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: set -o pipefail 
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_12.app
+
+    - name: Build and test
+      run: xcodebuild clean build test -project TDDCourse.xcodeproj -scheme "TDDCourse" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+      #run: xcodebuild clean build test -workspace App/QuizApp.xcworkspace -scheme "CI" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+
+  generate-documentation:
+      name: Generate Documentation
+      runs-on: macos-latest
+
+      steps:
+      - uses: actions/checkout@v2
+      - run: set -o pipefail 
+      
+      - name: Install Homebrew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      
+      - name: Install Swift-Docs
+        run: brew install swiftdocorg/formulae/swift-doc
+      
+      - name: Run Swift-Docs
+        run: swift doc generate TDDCourse -module-name TDDCourse
