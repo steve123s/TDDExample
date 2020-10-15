@@ -12,6 +12,9 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var libraryTableView: UITableView!
     @IBOutlet var dataService: MovieLibraryDataService!
     
+    
+    var unused_var_for_linter_test: Int = 0
+    
     var movieManager = MovieManager()
     
     override func viewDidLoad() {
