@@ -16,8 +16,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - name: Install Homebrew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      
       - name: Install SwiftLint
-        run: mint install realm/SwiftLint
+        run: brew install swiftlint
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
