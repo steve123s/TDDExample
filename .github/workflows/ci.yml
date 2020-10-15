@@ -45,7 +45,7 @@ jobs:
       needs: [swiftlint, build-and-test]
       
       name: Generate Documentation
-      runs-on: macos-latest
+      runs-on: ubuntu-latest
 
       steps:
       - uses: actions/checkout@v2
