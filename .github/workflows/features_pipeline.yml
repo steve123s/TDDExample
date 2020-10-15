@@ -1,4 +1,4 @@
-name: CI
+name: Features Pipeline
 
 on:
   push:
@@ -40,26 +40,3 @@ jobs:
     - name: Build and test
       run: xcodebuild clean build test -project TDDCourse.xcodeproj -scheme "TDDCourse" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
       #run: xcodebuild clean build test -workspace App/QuizApp.xcworkspace -scheme "CI" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-
-  generate-documentation:
-      needs: [swiftlint, build-and-test]
-      
-      name: Generate Documentation
-      runs-on: ubuntu-latest
-
-      steps:
-      - uses: actions/checkout@v2
-      - run: set -o pipefail 
-
-      - name: Generate Documentation
-        uses: SwiftDocOrg/swift-doc@master
-        with:
-          inputs: "TDDCourse"
-          module-name: TDDCourse
-          output: "Documentation"
-      - name: Upload Documentation to Wiki
-        uses: SwiftDocOrg/github-wiki-publish-action@v1
-        with:
-          path: "Documentation"
-        env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
