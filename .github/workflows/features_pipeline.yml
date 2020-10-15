@@ -9,8 +9,8 @@ on:
 jobs:
   
   swiftlint:
-    name: Swift Lint
-    runs-on: ubuntu-latest
+    name: SwiftLint
+    runs-on: macos-latest
 
     steps:
       - name: Check out Git repository
