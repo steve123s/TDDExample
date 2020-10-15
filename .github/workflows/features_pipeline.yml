@@ -16,6 +16,9 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - name: Install SwiftLint
+        run: mint install realm/SwiftLint
+
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
