@@ -50,9 +50,16 @@ jobs:
       steps:
       - uses: actions/checkout@v2
       - run: set -o pipefail 
-      
-      - name: Install Swift-Docs
-        run: brew install swiftdocorg/formulae/swift-doc
-      
-      - name: Run Swift-Docs
-        run: swift doc generate TDDCourse --module-name TDDCourse
+
+      - name: Generate Documentation
+        uses: SwiftDocOrg/swift-doc@master
+        with:
+          inputs: "TDDCourse"
+          module-name: TDDCourse
+          output: "Documentation"
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "Documentation"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
