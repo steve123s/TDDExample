@@ -18,6 +18,9 @@ jobs:
         
       - name: Temporary brew workaround
         run: brew uninstall openssl@1.0.2t
+      - run: brew uninstall python@2.7.17
+      - run: brew untap local/openssl
+      - run: brew untap local/python2
 
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
