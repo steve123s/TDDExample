@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
+        
+      - name: Temporary brew workaround
+        run: brew uninstall openssl@1.0.2t
 
       - name: Install Homebrew
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
